@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Scoala de Soferi</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h2>Bine ai venit!</h2>
+    <h3>Lecțiile Programate:</h3>
+    <table>
+        <tr>
+            <th>ID Lecție</th>
+            <th>CNP Elev</th>
+            <th>CNP Instructor</th>
+            <th>Data Lecție</th>
+            <th>Ora Lecție</th>
+            <th>Status</th>
+        </tr>
+        {% for lectie in lectii %}
+        <tr>
+            <td>{{ lectie.id_lectie }}</td>
+            <td>{{ lectie.cnp_elev }}</td>
+            <td>{{ lectie.cnp_instructor }}</td>
+            <td>{{ lectie.data_lectie }}</td>
+            <td>{{ lectie.ora_lectie }}</td>
+            <td>{{ lectie.status_lectie }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
