@@ -6,28 +6,51 @@
     <title>Dashboard - Scoala de Soferi</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
-<body>
-    <h2>Bine ai venit!</h2>
-    <h3>Lecțiile Programate:</h3>
-    <table>
-        <tr>
-            <th>ID Lecție</th>
-            <th>CNP Elev</th>
-            <th>CNP Instructor</th>
-            <th>Data Lecție</th>
-            <th>Ora Lecție</th>
-            <th>Status</th>
-        </tr>
-        {% for lectie in lectii %}
-        <tr>
-            <td>{{ lectie.id_lectie }}</td>
-            <td>{{ lectie.cnp_elev }}</td>
-            <td>{{ lectie.cnp_instructor }}</td>
-            <td>{{ lectie.data_lectie }}</td>
-            <td>{{ lectie.ora_lectie }}</td>
-            <td>{{ lectie.status_lectie }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+<body style="background-color: #212121;">
+    <h1>Bine ai venit, {{ username }}!</h1>
+    <a href="{{ url_for('logout') }}" class="button">Deconectare</a>
+
+    <h3>Selectează tabelul:</h3>
+    <form method="POST" action="{{ url_for('dashboard') }}">
+        <select name="tabel" id="tabel">
+            <option value="" disabled>Selectați</option>
+            <option value="Elevi">Elevi</option>
+            <option value="Instructori">Instructori</option>
+            <option value="Lectii">Lectii</option>
+            <option value="Plati">Plati</option>
+            <option value="Recenzii">Recenzii</option>
+            <option value="Vehicule">Vehicule</option>
+        </select>
+        <button type="button" class="button" id="resetButton">Resetează</button>
+    </form>
+
+    <h3>Selectează coloanele:</h3>
+    <form method="POST" action="{{ url_for('dashboard') }}">
+        <input type="hidden" name="tabel" value="{{ tabel }}">
+        <div id="coloane">
+            <!-- Coloanele vor fi generate dinamic -->
+        </div>
+        <button type="submit" class="button">Afișează coloanele</button>
+    </form>
+
+    <div id="rezultate">
+        <h3>Rezultate:</h3>
+        <table>
+            <tr>
+                {% for col in coloane %}
+                <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in rezultate %}
+            <tr>
+                {% for col in coloane %}
+                <td>{{ row[col] }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <script src="/static/dashboard.js"></script>
 </body>
 </html>

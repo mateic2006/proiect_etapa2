@@ -35,18 +35,28 @@ def login():
         print("Am primit o cerere GET")
         return render_template('login.html')
 
-
-
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     # Verifică dacă utilizatorul este autentificat
     if 'username' not in session:
         return redirect(url_for('index'))
 
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM Lectii")
-    lectii = cursor.fetchall()
-    return render_template('dashboard.html', lectii=lectii)
+    username = session['username']
+    tabel = 'Lectii'  # Tabelul implicit
+    coloane = []
+    rezultate = []
+
+    if request.method == 'POST':
+        tabel = request.form.get('tabel', 'Lectii')
+        coloane = request.form.getlist('coloane')
+
+        if coloane:
+            coloane_str = ', '.join(coloane)
+            cursor = conn.cursor()
+            cursor.execute(f"SELECT {coloane_str} FROM {tabel}")
+            rezultate = cursor.fetchall()
+
+    return render_template('dashboard.html', username=username, tabel=tabel, coloane=coloane, rezultate=rezultate)
 
 @app.route('/logout')
 def logout():
