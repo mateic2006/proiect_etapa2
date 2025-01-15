@@ -16,7 +16,7 @@ h2 {
     text-align: center;
 }
 
-.form {
+.delete-container {
     --bg-light: #efefef;
     --bg-dark: #707070;
     --clr: #58bc82;
@@ -31,16 +31,14 @@ h2 {
     border-radius: 1rem; /* Add border radius to form */
 }
 
-.form .input-span {
+.delete-container .input-span {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.form input[type="text"],
-.form input[type="email"],
-.form input[type="password"] {
+.delete-container input[type="text"] {
     border-radius: 0.5rem;
     padding: 1rem 0.75rem;
     width: 100%;
@@ -52,9 +50,7 @@ h2 {
     outline: 2px solid var(--bg-dark);
 }
 
-.form input[type="text"]:focus,
-.form input[type="email"]:focus,
-.form input[type="password"]:focus {
+.delete-container input[type="text"]:focus {
     outline: 2px solid var(--clr);
 }
 
@@ -64,7 +60,7 @@ h2 {
     font-weight: 600;
 }
 
-.form .submit {
+.delete-container button {
     padding: 1rem 0.75rem;
     width: 100%;
     display: flex;
@@ -80,11 +76,16 @@ h2 {
     font-size: 0.9rem;
 }
 
-.form .submit:hover {
+.delete-container button:hover {
     background-color: var(--clr);
     color: var(--bg-dark);
 }
 
+#message {
+    margin-top: 10px;
+    text-align: center;
+    color: var(--clr);
+}
 .span {
     text-decoration: none;
     color: var(--bg-dark);
@@ -92,4 +93,19 @@ h2 {
 
 .span a {
     color: var(--clr);
+}
+
+.form {
+    --bg-light: #efefef;
+    --bg-dark: #707070;
+    --clr: #58bc82;
+    --clr-alpha: #9c9c9c60;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 300px;
+    padding: 2rem; /* Add padding to form */
+    border-radius: 1rem; /* Add border radius to form */
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sign Up - Scoala de Soferi</title>
+        <link rel="stylesheet" href="/static/signup.css" />
+    </head>
+    <body>
+        <form class="form" action="/signup" method="POST">
+            <h2>Sign Up - Scoala de Soferi</h2>
+           
+            <div class="checkbox-wrapper-35">
+            <input value="private" name="switch" id="switch" type="checkbox" class="switch">
+            <label for="switch">
+                <span class="switch-x-text">This is </span>
+                <span class="switch-x-toggletext">
+                <span class="switch-x-unchecked"><span class="switch-x-hiddenlabel">Unchecked: </span>Elev</span>
+                <span class="switch-x-checked"><span class="switch-x-hiddenlabel">Checked: </span>Instructor</span>
+                </span>
+            </label>
+            </div>
+
+            <span class="input-span">
+                <label for="cnp_elev" class="label">CNP</label>
+                <input type="text" name="cnp_elev" id="cnp_elev" pattern="\d{13}" title="CNP must be exactly 13 digits" required />
+            </span>
+            <span class="input-span">
+                <label for="nume" class="label">Nume</label>
+                <input type="text" name="nume" id="nume" required />
+            </span>
+            <span class="input-span">
+                <label for="prenume" class="label">Prenume</label>
+                <input type="text" name="prenume" id="prenume" required />
+            </span>
+            <span class="input-span" id="dataNasteriiSpan">
+                <label for="data_nasterii" class="label">Data Nasterii</label>
+                <input type="date" name="data_nasterii" id="data_nasterii" required />
+            </span>
+            <span class="input-span" id="aniExperientaSpan" style="display: none;">
+                <label for="ani_experienta" class="label">Ani Experienta</label>
+                <input type="number" name="ani_experienta" id="ani_experienta" min="0" disabled required />
+            </span>
+            <span class="input-span">
+                <label for="telefon" class="label">Telefon</label>
+                <input type="text" name="telefon" id="telefon" required />
+            </span>
+            <span class="input-span">
+                <label for="email" class="label">Email</label>
+                <input type="email" name="email" id="email" required />
+            </span>
+            <span class="input-span">
+                <label for="username" class="label">Username</label>
+                <input type="text" name="username" id="username" required />
+            </span>
+            <span class="input-span">
+                <label for="password" class="label">Password</label>
+                <input type="password" name="password" id="password" required />
+            </span>
+            <input class="submit" type="submit" value="Sign Up" />
+            <span class="span">Already have an account? <a href="/login">Log in</a></span>
+        </form>
+        <script src="/static/signup.js"></script>
+    </body>
+</html>

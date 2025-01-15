@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Reset Password - Scoala de Soferi</title>
+        <link rel="stylesheet" href="/static/reset.css" />
+    </head>
+    <body>
+        <form class="form" id="resetForm" action="/reset" method="POST">
+            <h2>Reset Password</h2>
+            <div id="emailSection">
+                <span class="input-span">
+                    <label for="email" class="label">Email</label>
+                    <input type="email" name="email" id="email" required />
+                </span>
+                <button type="button" id="verifyEmail" class="submit">Verify Email</button>
+            </div>
+
+            <div class="dot-spinner" style="display: none;">
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+                <div class="dot-spinner__dot"></div>
+            </div>
+
+            <div id="passwordSection" style="display: none;">
+                <span class="input-span">
+                    <label for="new_password" class="label">New Password</label>
+                    <input type="password" name="new_password" id="new_password" required />
+                </span>
+                <span class="input-span">
+                    <label for="confirm_password" class="label">Confirm Password</label>
+                    <input type="password" name="confirm_password" id="confirm_password" required />
+                </span>
+                <input class="submit" type="submit" value="Reset Password" />
+            </div>
+
+            <span class="span">Remember your password? <a href="/login">Back to Login</a></span>
+        </form>
+        <script src="/static/reset.js"></script> 
+    </body>
+</html>

@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard - Scoala de Soferi</title>
-    <link rel="stylesheet" href="/static/dashboard.css" />
+    <title>Home - Scoala de Soferi</title>
+    <link rel="stylesheet" href="/static/home.css" />
   </head>
+
   <body>
     <div class="background">
       <button class="menu__icon" onclick="toggleMenu()">
@@ -75,55 +76,23 @@
       </div>
     </div>
 
-    <form class="form" id="dashboardForm" method="POST" action="{{ url_for('dashboard') }}">
-        <h2>Dashboard - {{ username }}</h2>
-        <span class="input-span">
-            <label for="tabel" class="label">Selectează tabelul</label>
-            <select name="tabel" id="tabel" class="form-input">
-                <option value="" disabled>Selectați</option>
-                <option value="Elevi">Elevi</option>
-                <option value="Instructori">Instructori</option>
-                <option value="Lectii">Lectii</option>
-                <option value="Plati">Plati</option>
-                <option value="Recenzii">Recenzii</option>
-                <option value="Vehicule">Vehicule</option>
-            </select>
-        </span>
+    <div class="login-container">
+      <h2>Home - Scoala de Soferi</h2>
+      <p>
+        Bine ați venit la Școala de Șoferi! Aici veți găsi toate informațiile
+        necesare pentru a începe călătoria dvs. spre obținerea permisului de
+        conducere.
+      </p>
+      <p>
+        Vă rugăm să vă autentificați pentru a accesa toate funcționalitățile
+        site-ului.
+      </p>
+      <a class="submit" href="/login">Log in</a>
+      <span class="span"
+        >Nu aveți un cont? <a href="/signup">Înregistrați-vă</a></span
+      >
+    </div>
 
-        <span class="input-span">
-            <label class="label">Selectează coloanele</label>
-            <div id="coloane" class="form-input checkbox-container">
-                <!-- Coloanele vor fi generate dinamic -->
-            </div>
-        </span>
-
-        <input type="submit" class="submit" value="Afișează">
-        <input type="button" class="submit reset-button" id="resetButton" value="Resetează">
-        
-        <div id="rezultate" class="results-table">
-            {% if rezultate %}
-            <table>
-                <tr>
-                    {% for col in coloane %}
-                    <th>{{ col }}</th>
-                    {% endfor %}
-                </tr>
-                {% for row in rezultate %}
-                <tr>
-                    {% for col in coloane %}
-                    <td>{{ row[col] }}</td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </table>
-            {% endif %}
-        </div>
-
-        <span class="span">
-            <a href="{{ url_for('logout') }}" class="logout-link">Deconectare</a>
-        </span>
-    </form>
-
-    <script src="/static/dashboard.js"></script>
+    <script src="/static/home.js"></script>
   </body>
 </html>

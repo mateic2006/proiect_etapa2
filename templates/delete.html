@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account - Scoala de Soferi</title>
+    <link rel="stylesheet" href="/static/delete.css">
+</head>
+<body>
+    <div class="delete-container">
+        <h2>Delete Account</h2>
+        <form id="deleteForm" method="POST" action="/delete">
+            <div class="input-span">
+                <label for="identifier" class="label">Email or Username:</label>
+                <input type="text" id="identifier" name="identifier" required>
+            </div>
+            <button type="submit" class="submit">Delete Account</button>
+        </form>
+        <div id="message"></div>
+    </div>
+    <script src="/static/delete.js"></script>
+</body>
+</html>

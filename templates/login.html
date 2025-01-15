@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="ro">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Scoala de Soferi</title>
-    <link rel="stylesheet" href="/static/login.css">
-</head>
-<body style="background-color: #212121;">
-    <div class="login-container">
-        <form class="form" action="/login" method="POST" style="background-color: #212121;">
-            <h2>Login - Scoala de Soferi</h2>
-            <span class="input-span">
-                <label for="email" class="label">Email</label>
-                <input type="email" name="email" id="email" required>
-            </span>
-            <span class="input-span">
-                <label for="password" class="label">Password</label>
-                <input type="password" name="password" id="password" required>
-            </span>
-            <span class="span"><a href="#">Forgot password?</a></span>
-            <input class="submit" type="submit" value="Log in">
-            <span class="span">Don't have an account? <a href="#">Sign up</a></span>
-        </form>
-    </div>
-</body>
+    <link rel="stylesheet" href="/static/login.css" />
+  </head>
+  <body>
+    <form class="form" action="/login" method="POST">
+      <h2>Login - Scoala de Soferi</h2>
+      <span class="input-span">
+        <label for="username" class="label">username</label>
+        <input type="text" name="username" id="username" required />
+      </span>
+      <span class="input-span">
+        <label for="password" class="label">password</label>
+        <input type="password" name="password" id="password" required />
+      </span>
+      <span class="span"><a href="/reset">Forgot password?</a></span>
+      <input class="submit" type="submit" value="Log in" />
+      <span class="span">Don't have an account? <a href="/signup">Sign up</a></span>
+    </form>
+  </body>
 </html>
