@@ -209,5 +209,108 @@ def delete_account():
             return {'success': False, 'error': str(e)}
     return render_template('delete.html')
 
+@app.route('/simple-query/<int:query_number>')
+def simple_query(query_number):
+    with conn.cursor() as cursor:
+        # Interogări simple (JOIN între două sau mai multe tabele)
+        queries = {
+            # Elevii și instructorii care au predat lecții împreună:
+            1: """
+                SELECT e.nume, e.prenume, i.nume AS nume_instructor, i.prenume AS prenume_instructor
+                FROM Elevi e
+                JOIN Lectii l ON e.cnp_elev = l.cnp_elev
+                JOIN Instructori i ON l.cnp_instructor = i.cnp_instructor;
+
+                """,
+            # Data lecției, marca și modelul vehiculului pentru fiecare lecț
+            2: """
+                SELECT L.data_lectie, V.marca, V.model
+                FROM Lectii L
+                JOIN Vehicule V ON L.serie_sasiu = V.serie_sasiu
+                """,
+            # Numărul de lecții predate de fiecare instructor
+            3: """
+                SELECT I.nume, COUNT(L.id_lectie) AS numar_lectii
+                FROM Instructori I
+                JOIN Lectii L ON I.cnp_instructor = L.cnp_instructor
+                GROUP BY I.nume
+                """,
+            # Suma plătită de fiecare elev și data plății
+            4: """
+                SELECT E.nume, E.prenume, P.suma, P.data_plata
+                FROM Elevi E
+                JOIN Plati P ON E.cnp_elev = P.cnp_elev
+                """,
+            # Numele instructorului și marca și modelul vehiculului pe care îl folosește
+            5: """
+                SELECT I.nume, V.marca, V.model
+                FROM Instructori I
+                JOIN Instructori_Vehicule IV ON I.cnp_instructor = IV.cnp_instructor
+                JOIN Vehicule V ON IV.serie_sasiu = V.serie_sasiu
+                """,
+            # Rating-urile lăsate de elevi pentru instructori
+            6: """
+                SELECT R.rating, E.nume, I.nume
+                FROM Recenzii R
+                JOIN Elevi E ON R.cnp_elev = E.cnp_elev
+                JOIN Instructori I ON R.cnp_instructor = I.cnp_instructor
+                """
+        }
+
+        cursor.execute(queries.get(query_number, ""))
+        results = cursor.fetchall()
+
+        # Conversia rezultatelor în JSON
+        return jsonify([dict(zip([column[0] for column in cursor.description], row)) for row in results])
+
+@app.route('/complex-query/<int:query_number>')
+def complex_query(query_number):
+    with conn.cursor() as cursor:
+        # Interogări complexe (subinterogări)
+        complex_queries = {
+            # Numărul total de lecții predate de fiecare instructor:
+            1: """
+                SELECT I.nume, 
+                (SELECT COUNT(*) 
+                 FROM Lectii L 
+                 WHERE L.cnp_instructor = I.cnp_instructor) AS total_lectii
+                FROM Instructori I
+                """,
+            # Elevii care nu au lăsat recenzii:
+            2: """
+                SELECT e.nume, e.prenume
+                FROM Elevi e
+                WHERE NOT EXISTS (SELECT 1 FROM Recenzii r WHERE r.cnp_elev = e.cnp_elev);
+                """,
+            # Interogare care returnează numele instructorilor care au predat cel puțin o lecție
+            3: """
+                SELECT V.marca, COUNT(L.id_lectie) AS numar_lectii
+                FROM Vehicule V
+                JOIN Lectii L ON V.serie_sasiu = L.serie_sasiu
+                GROUP BY V.marca
+                HAVING COUNT(L.id_lectie) >= 1
+                """,
+            # Instructorii cu cea mai mare medie a rating-urilor primite:
+            4: """
+                SELECT i.nume, i.prenume
+                FROM Instructori i
+                WHERE i.cnp_instructor IN (
+                    SELECT r.cnp_instructor
+                    FROM Recenzii r
+                    WHERE r.rating = (SELECT MAX(rating) FROM Recenzii)
+                );
+                """
+        }
+
+        cursor.execute(complex_queries.get(query_number, ""))
+        results = cursor.fetchall()
+
+        # Conversia rezultatelor în JSON
+        return jsonify([dict(zip([column[0] for column in cursor.description], row)) for row in results])
+
+@app.route('/interogari')
+def interogari():
+    return render_template('interogari.html')
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -151,3 +151,6 @@ function navigateToHome() {
 function navigateToDelete() {
     window.location.href = "/delete";
 }
+function navigateToInterogari() {
+    window.location.href = "/interogari";
+}

@@ -1,0 +1,110 @@
+/* Base styles */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #212121; /* Ensure background color is consistent */
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #58bc82;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form {
+    --bg-light: #efefef;
+    --bg-dark: #707070;
+    --clr: #58bc82;
+    --clr-alpha: #9c9c9c60;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 300px;
+    padding: 2rem; /* Add padding to form */
+    border-radius: 1rem; /* Add border radius to form */
+}
+
+.form .input-span {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    align-self: flex-start;
+    color: var(--clr);
+    font-weight: 600;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    align-items: center; /* Center the buttons horizontally */
+}
+
+.button-group .submit {
+    padding: 1rem 0.75rem;
+    width: 130%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 3rem;
+    background-color: var(--bg-dark);
+    color: var(--bg-light);
+    border: none;
+    cursor: pointer;
+    transition: all 300ms;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.result-container {
+    margin-top: 1rem;
+    padding: 1rem;
+    max-width: 600px; /* Increase the max-width to make it wider */
+    background-color: var(--clr-alpha);
+    border-radius: 0.5rem;
+    color: var(--bg-light);
+    display: flex;
+    justify-content: center; /* Center the table horizontally */
+}
+
+.result-container table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto; /* Adjust table layout to auto */
+}
+
+.result-container th,
+.result-container td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--bg-dark);
+    white-space: nowrap; /* Ensure text stays on a single line */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for overflow text */
+}
+
+.result-container th {
+    color: var(--clr);
+    font-weight: 600;
+}
+
+.span {
+    text-decoration: none;
+    color: var(--bg-dark);
+}
+
+.span a {
+    color: var(--clr);
+}

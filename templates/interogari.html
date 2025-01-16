@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interogări - Scoala de Soferi</title>
+    <link rel="stylesheet" href="/static/interogari.css">
+</head>
+<body>
+    <div class="form">
+        <h2>Interogări Bază de Date</h2>
+        
+        <span class="input-span">
+            <label class="label">Interogări Simple</label>
+            <div class="button-group">
+                <input type="button" class="submit" onclick="executeQuery(1)" value="Elevii și instructorii care au predat lecții împreună">
+                <input type="button" class="submit" onclick="executeQuery(2)" value="Data lecției, marca și modelul vehiculului">
+                <input type="button" class="submit" onclick="executeQuery(3)" value="Numărul de lecții predate de fiecare instructor">
+                <input type="button" class="submit" onclick="executeQuery(4)" value="Suma plătită de fiecare elev și data plății">
+                <input type="button" class="submit" onclick="executeQuery(5)" value="Numele instructorului și vehiculul folosit">
+                <input type="button" class="submit" onclick="executeQuery(6)" value="Rating-urile lăsate de elevi pentru instructori">
+            </div>
+        </span>
+
+        <span class="input-span">
+            <label class="label">Interogări Complexe</label>
+            <div class="button-group">
+                <input type="button" class="submit" onclick="executeComplexQuery(1)" value="Numărul total de lecții predate de fiecare instructor">
+                <input type="button" class="submit" onclick="executeComplexQuery(2)" value="Elevii care nu au lăsat recenzii">
+                <input type="button" class="submit" onclick="executeComplexQuery(3)" value="Instructorii care au predat cel puțin o lecție">
+                <input type="button" class="submit" onclick="executeComplexQuery(4)" value="Instructorii cu cea mai mare medie a rating-urilor">
+            </div>
+        </span>
+
+        <div id="result" class="result-container" style="display: none;"></div>
+        
+        <span class="span">
+            <a href="/dashboard">Înapoi la Dashboard</a>
+        </span>
+    </div>
+
+    <script src="/static/interogari.js"></script>
+</body>
+</html>

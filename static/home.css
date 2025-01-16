@@ -47,7 +47,16 @@ button {
     justify-content: center;
     align-items: center;
 }
-
+p {
+    color: #efefef;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+}
+.span {
+    text-decoration: none;
+    color: #707070;
+}
 .menu__icon {
     width: 32px;
     height: 32px;
