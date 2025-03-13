@@ -6,10 +6,11 @@ app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', os.urandom(24))  
 
 # Conectare la baza de date folosind autentificare Windows
-conn = pyodbc.connect('DRIVER={ODBC Driver 11 for SQL Server};'
-                      'SERVER=DESKTOP-EQBM2CM\\SQLEXPRESS;' 
-                      'DATABASE=Proiect ( scoala de soferi);'
-                      'Trusted_Connection=yes;')
+conn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};'
+                      'SERVER=DESKTOP-RKGB73S;' 
+                      'DATABASE=Proiect ( Scoala de soferi1);'
+                      'Trusted_Connection=yes;'
+                      'TrustServerCertificate=yes;')
 
 @app.route('/')
 def index():
